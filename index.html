@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lacak Kiriman - JP-992837410</title>
+    <style>
+        body { background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; overflow: hidden; } 
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); text-align: center; width: 350px; border-top: 5px solid #e60013; } 
+        
+        .header-status { color: #e60013; font-weight: bold; font-size: 14px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; } 
+        .btn-open { background: #e60013; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; font-size: 16px; transition: 0.3s; } 
+        .btn-open:hover { background: #c50010; } 
+        
+        .scan-area { padding: 20px; background: #fafafa; border-radius: 10px; border: 2px dashed #ccc; margin-top: 15px; } 
+        .fingerprint-icon { font-size: 70px; cursor: pointer; user-select: none; transition: 0.3s; filter: grayscale(1); margin: 15px 0; display: inline-block; }
+        .scanning { filter: grayscale(0) sepia(1) saturate(5) hue-rotate(-50deg); animation: pulse 0.8s infinite; } 
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } } 
+        
+        .surat-resmi { text-align: left; background: #fffdf0; padding: 20px; border: 1px solid #e0d0b0; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.5; position: relative; box-shadow: inset 0 0 50px rgba(0,0,0,0.05); } 
+        .stempel { color: rgba(230, 0, 19, 0.7); font-weight: bold; border: 3px solid rgba(230, 0, 19, 0.7); display: inline-block; padding: 5px 10px; transform: rotate(-20deg); position: absolute; bottom: 20px; right: 20px; font-size: 12px; } 
+        
+        .hidden { display: none; } #nextBtn { margin-top: 25px; background: #222; color: white; padding: 12px 25px; border: none; border-radius: 30px; cursor: pointer; display: none; font-weight: bold; transition: 0.3s; } 
+        
+        /* Style tombol Fun Web */ 
+        .btn { position: relative; font-size: 17px; text-transform: uppercase; text-decoration: none; padding: 1em 2.5em; display: inline-block; cursor: pointer; border-radius: 6em; transition: all 0.2s; border: none; font-family: inherit; font-weight: 500; color: black; background-color: white; } 
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); } 
+        .btn:active { transform: translateY(-1px); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); } 
+        .btn::after { content: ""; display: inline-block; height: 100%; width: 100%; border-radius: 100px; position: absolute; top: 0; left: 0; z-index: -1; transition: all 0.4s; background-color: #fff; } 
+        .btn:hover::after { transform: scaleX(1.4) scaleY(1.6); opacity: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div id="step1">
+            <div class="header-status">Pelacakan Paket: JP-992837410</div>
+            <img src="https://cdn-icons-png.flaticon.com/512/709/709790.png" width="80" style="margin-bottom: 15px;">
+            <p>Status: <span style="color: #28a745;">Tiba di Tujuan</span></p>
+            <p style="font-size: 13px; color: #666;">Kurir sudah berada di depan rumah Anda. Silakan ambil paket.</p>
+            <button class="btn-open" onclick="goStep2()">AMBIL & BUKA PAKET</button>
+        </div>
+
+        <div id="step2" class="hidden">
+            <div class="header-status">Verifikasi Keamanan</div>
+            <p style="font-size: 14px;">Paket ini berisi dokumen rahasia. <br><b>Tempel & Tahan Jari</b> untuk memverifikasi:</p>
+            <div class="scan-area">
+                <!-- Bisa diganti foto sendiri -->
+                <img src="fingerprint_icon_208830.png" id="scanner" class="fingerprint-icon" 
+                     onmousedown="startScan()" onmouseup="stopScan()" 
+                     ontouchstart="startScan()" ontouchend="stopScan()" 
+                     width="100" style="border-radius: 10px; cursor: pointer;">
+                <div id="progressText" style="font-size: 12px; color: #888;">Siap memindai...</div>
+            </div>
+        </div>
+
+        <div id="step3" class="hidden">
+            <div class="surat-resmi">
+                <p><strong>BERITA ACARA SERAH TERIMA</strong></p>
+                <hr>
+                <p>Melalui verifikasi biometrik, secara otomatis pemilik sidik jari ini dinyatakan:</p>
+                <p style="font-size: 16px; background: #eee; padding: 5px;"><b>RESMI MENJADI MILIK YANG BERTANDA TANGAN DIBAWAH</b></p>
+                <p>Keputusan ini bersifat mutlak, tidak dapat diganggu gugat, dan berlaku selamanya.</p>
+                <p style="margin-top: 10px;">Ditanda tangani oleh,<br>PEMILIK WEBSITE</p>
+                <div class="stempel">TERSEGEL CINTA</div>
+            </div>
+            <button id="nextBtn" onclick="finalStep()">LANJUTKAN →</button>
+        </div>
+
+        <div id="step4" class="hidden">
+            <h2>HEHE KENA! 🥰</h2>
+            <p>Makasih ya udah mau scan jarinya. <br>Sekarang kamu udah resmi jadi milik aku.</p>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHh1a2Z5dXFqMmxibmJiOW55cnZscG5qODN6ODMwdjJrOWZza2EzdyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Zl7u48zLVFgLpRwq6f/giphy.gif" width="180">
+            <p><i>Jadi kapan ketemu lagi? Bikin video lagi? Main lagi?</i></p>
+
+            <!-- Tombol Fun Web (awal disembunyikan) -->
+            <button class="btn" id="funBtn" onclick="window.open('#','_blank')" style="display:none;">
+                Fun Web
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); 
+        function playTone(freq, duration) { const osc = audioCtx.createOscillator(); 
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination); 
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime); 
+            osc.start(); osc.stop(audioCtx.currentTime + duration); }
+
+        let scanTimer;
+
+        function goStep2() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+        }
+
+        function startScan() {
+            const scanner = document.getElementById('scanner');
+            const text = document.getElementById('progressText');
+            scanner.classList.add('scanning');
+            text.innerText = "Memproses sidik jari...";
+            playTone(440, 0.1);
+
+            scanTimer = setTimeout(() => {
+                playTone(880, 0.5);
+                goStep3();
+            }, 2500); 
+        }
+
+        function stopScan() {
+            const scanner = document.getElementById('scanner');
+            const text = document.getElementById('progressText');
+            scanner.classList.remove('scanning');
+            text.innerText = "Scan Gagal! Ulangi lagi.";
+            clearTimeout(scanTimer);
+        }
+
+        function goStep3() {
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+            
+            setTimeout(() => {
+                const btn = document.getElementById('nextBtn');
+                btn.style.display = 'inline-block';
+            }, 3000);
+        }
+
+                function finalStep() {
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step4').classList.remove('hidden');
+
+            // Tombol Fun Web muncul setelah 3 detik
+            setTimeout(() => {
+                document.getElementById('funBtn').style.display = 'inline-block';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
